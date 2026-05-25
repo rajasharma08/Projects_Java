@@ -55,7 +55,7 @@ public class PatientService {
         boolean found= false;
         for(Patient patient:patients){
             if(patient.getPatientId() == patientId) {
-                System.out.print("Patient details found.");
+                System.out.println("Patient details found.");
                 System.out.println(patient);
                 found=true;
                 break;

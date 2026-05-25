@@ -21,9 +21,11 @@ public class Main {
                 System.out.println("3. Search patient by Id");
                 System.out.println("4. Delete patient by Id");
                 System.out.println("5. Update patient details");
-                System.out.println("6. View Doctors");
-                System.out.println("7. Book Appointment");
-                System.out.println("8. Exit");
+                System.out.println("6. Add Doctors");
+                System.out.println("7. View Doctors");
+                System.out.println("8. Search Doctor by Id");
+                System.out.println("9. Book Appointment");
+                System.out.println("10. Exit");
                 System.out.print("Enter Your Choice: ");
 
                 int choice = scanner.nextInt();
@@ -46,12 +48,24 @@ public class Main {
                         System.out.println();
                         break;
                     case 5:
-                        // view Doctors
+                        patientService.updatepatient();
+                        System.out.println();
+                        break;
                     case 6:
-                        // view Doctors
+                        doctorService.addDoctor();
+                        System.out.println();
+                        break;
                     case 7:
-                        // Book Appointment
+                        doctorService.viewDoctors();
+                        System.out.println();
+                        break;
                     case 8:
+                        doctorService.searchDoctorById();
+                        System.out.println();
+                        break;
+                    case 9:
+                        //
+                    case 10:
                         return;
                         //exit
                     default:

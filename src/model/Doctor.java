@@ -12,6 +12,8 @@ public class Doctor {
         this.specialization=specialization;
     }
 
+    public Doctor(){}
+
     public int getDoctorId() {
         return doctorId;
     }
