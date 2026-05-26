@@ -66,6 +66,15 @@ public class PatientService {
         }
     }
 
+    public Patient searchPatientById(int patientId){
+        for(Patient patient:patients){
+            if(patient.getPatientId() == patientId) {
+                return patient;
+            }
+        }
+        return null;
+    }
+
     public void deletePatientById(){
         System.out.println("Enter the patient id : ");
         int patientId = scanner.nextInt();

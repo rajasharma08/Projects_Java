@@ -25,22 +25,18 @@ public class DoctorService {
         String specialization = scanner.next();
         doctor.setSpecialization(specialization);
         doctors.add(doctor);
+        System.out.println("Doctor details added successfully!!!");
         System.out.println(doctor);
     }
 
     public void viewDoctors(){
-        System.out.println("Enter doctor Id: ");
-        int doctorId = scanner.nextInt();
-        boolean found = false;
-        for(Doctor doctor: doctors){
-            if(doctor.getDoctorId()==doctorId){
-                System.out.println(doctor);
-                found = true;
-                break;
-            }
+        if(doctors.isEmpty()){
+            System.out.println("No doctor details are present");
         }
-        if(!found){
-            System.out.println("Doctor details are not present!!!");
+        else{
+            for(Doctor doctor : doctors){
+                System.out.println(doctor);
+            }
         }
     }
 
@@ -58,6 +54,15 @@ public class DoctorService {
         if(!found){
             System.out.println("Doctor details are not present!!!");
         }
+    }
+
+    public Doctor searchPatientById(int doctorId){
+        for(Doctor doctor:doctors){
+            if(doctor.getDoctorId() == doctorId) {
+                return doctor;
+            }
+        }
+        return null;
     }
 
 

@@ -11,7 +11,7 @@ public class Main {
 
         PatientService patientService = new PatientService();
         DoctorService doctorService = new DoctorService();
-        AppointmentService appointmentService = new AppointmentService();
+        AppointmentService appointmentService = new AppointmentService(patientService,doctorService);
         Scanner scanner = new Scanner(System.in);
         try{
             while(true){
@@ -25,7 +25,8 @@ public class Main {
                 System.out.println("7. View Doctors");
                 System.out.println("8. Search Doctor by Id");
                 System.out.println("9. Book Appointment");
-                System.out.println("10. Exit");
+                System.out.println("10. View Appointment");
+                System.out.println("11. Exit");
                 System.out.print("Enter Your Choice: ");
 
                 int choice = scanner.nextInt();
@@ -64,8 +65,14 @@ public class Main {
                         System.out.println();
                         break;
                     case 9:
-                        //
+                        appointmentService.bookAppointment();
+                        System.out.println();
+                        break;
                     case 10:
+                        appointmentService.viewAppointment();
+                        System.out.println();
+                        break;
+                    case 11:
                         return;
                         //exit
                     default:
