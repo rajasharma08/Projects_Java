@@ -17,6 +17,12 @@ public class DoctorService {
         Doctor doctor = new Doctor();
         System.out.println("Enter the doctor Id : ");
         int doctorId = scanner.nextInt();
+        for(Doctor d:doctors){
+            if(d.getDoctorId()==doctorId){
+                System.out.println("Doctor details are already present with this doctor id");
+                return;
+            }
+        }
         doctor.setDoctorId(doctorId);
         System.out.println("Enter doctor name :");
         String doctorName = scanner.next();
@@ -56,9 +62,37 @@ public class DoctorService {
         }
     }
 
-    public Doctor searchPatientById(int doctorId){
+    public Doctor searchDoctorById(int doctorId){
         for(Doctor doctor:doctors){
             if(doctor.getDoctorId() == doctorId) {
+                return doctor;
+            }
+        }
+        System.out.println("Doctor details are not present!!!");
+        return null;
+    }
+
+    public void deleteDoctorById(){
+        System.out.println("Enter the doctor id : ");
+        int doctorId = scanner.nextInt();
+        boolean found = false;
+        for(Doctor doctor: doctors){
+            if(doctor.getDoctorId()==doctorId){
+                doctors.remove(doctor);
+                System.out.println("doctor details deleted successfully");
+                found=true;
+                break;
+            }
+        }
+        if(!found){
+            System.out.println("doctor details are not present");
+        }
+
+    }
+
+    public Doctor searchDoctorBySpecialization(String specialization){
+        for(Doctor doctor:doctors){
+            if(doctor.getSpecialization() == specialization) {
                 return doctor;
             }
         }

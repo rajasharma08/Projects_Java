@@ -36,7 +36,7 @@ public class AppointmentService {
         System.out.println("Enter the doctor id : ");
         int doctorId = scanner.nextInt();
 
-        Doctor doctor = doctorService.searchPatientById(doctorId);
+        Doctor doctor = doctorService.searchDoctorById(doctorId);
 
         if(doctor == null){
             System.out.println("Doctor not found");
@@ -57,7 +57,7 @@ public class AppointmentService {
 
     }
 
-    public void viewAppointment(){
+    public void viewAppointments(){
         if(appointments.isEmpty()){
             System.out.println("No Appointment are present");
             return;
@@ -65,6 +65,10 @@ public class AppointmentService {
         for(Appointment appointment : appointments){
             System.out.println(appointments);
         }
+
+    }
+
+    public void cancelAppointment(){
 
     }
 

@@ -1,5 +1,3 @@
-import model.Doctor;
-import model.Patient;
 import service.AppointmentService;
 import service.DoctorService;
 import service.PatientService;
@@ -7,85 +5,181 @@ import service.PatientService;
 import java.util.Scanner;
 
 public class Main {
+
+    static Scanner scanner = new Scanner(System.in);
+
     public static void main(String[] args) {
 
         PatientService patientService = new PatientService();
         DoctorService doctorService = new DoctorService();
-        AppointmentService appointmentService = new AppointmentService(patientService,doctorService);
-        Scanner scanner = new Scanner(System.in);
-        try{
-            while(true){
-                System.out.println("Hospital Management System: ");
-                System.out.println("1. Add patient");
-                System.out.println("2. View patients");
-                System.out.println("3. Search patient by Id");
-                System.out.println("4. Delete patient by Id");
-                System.out.println("5. Update patient details");
-                System.out.println("6. Add Doctors");
-                System.out.println("7. View Doctors");
-                System.out.println("8. Search Doctor by Id");
-                System.out.println("9. Book Appointment");
-                System.out.println("10. View Appointment");
-                System.out.println("11. Exit");
-                System.out.print("Enter Your Choice: ");
 
-                int choice = scanner.nextInt();
+        AppointmentService appointmentService =
+                new AppointmentService(patientService, doctorService);
 
-                switch(choice){
-                    case 1:
-                        patientService.addPatient();
-                        System.out.println();
-                        break;
-                    case 2:
-                        patientService.viewPatients();
-                        System.out.println();
-                        break;
-                    case 3:
-                        patientService.searchPatientById();
-                        System.out.println();
-                        break;
-                    case 4:
-                        patientService.deletePatientById();
-                        System.out.println();
-                        break;
-                    case 5:
-                        patientService.updatepatient();
-                        System.out.println();
-                        break;
-                    case 6:
-                        doctorService.addDoctor();
-                        System.out.println();
-                        break;
-                    case 7:
-                        doctorService.viewDoctors();
-                        System.out.println();
-                        break;
-                    case 8:
-                        doctorService.searchDoctorById();
-                        System.out.println();
-                        break;
-                    case 9:
-                        appointmentService.bookAppointment();
-                        System.out.println();
-                        break;
-                    case 10:
-                        appointmentService.viewAppointment();
-                        System.out.println();
-                        break;
-                    case 11:
-                        return;
-                        //exit
-                    default:
-                        System.out.println("Enter Valid Choice!!!");
-                }
+        while (true) {
+
+            System.out.println("\n===== Hospital Management System =====");
+            System.out.println("1. Patient Management");
+            System.out.println("2. Doctor Management");
+            System.out.println("3. Appointment Management");
+            System.out.println("4. Exit");
+
+            System.out.print("Enter Choice: ");
+
+            int choice = scanner.nextInt();
+
+            switch (choice) {
+
+                case 1:
+                    patientMenu(patientService);
+                    break;
+
+                case 2:
+                    doctorMenu(doctorService);
+                    break;
+
+                case 3:
+                    appointmentMenu(appointmentService);
+                    break;
+
+                case 4:
+                    System.out.println("Application Closed");
+                    return;
+
+                default:
+                    System.out.println("Enter Valid Choice");
             }
-
         }
-        catch (Exception e){
-            e.printStackTrace();
+    }
+
+    public static void patientMenu(PatientService patientService) {
+
+        while (true) {
+
+            System.out.println("\n===== Patient Management =====");
+            System.out.println("1. Add Patient");
+            System.out.println("2. View Patients");
+            System.out.println("3. Search Patient");
+            System.out.println("4. Update Patient");
+            System.out.println("5. Delete Patient");
+            System.out.println("6. Back");
+
+            System.out.print("Enter Choice: ");
+
+            int choice = scanner.nextInt();
+
+            switch (choice) {
+
+                case 1:
+                    patientService.addPatient();
+                    break;
+
+                case 2:
+                    patientService.viewPatients();
+                    break;
+
+                case 3:
+                    patientService.searchPatientById();
+                    break;
+
+                case 4:
+                    patientService.updatepatient();
+                    break;
+
+                case 5:
+                    patientService.deletePatientById();
+                    break;
+
+                case 6:
+                    return;
+
+                default:
+                    System.out.println("Enter Valid Choice");
+            }
         }
+    }
 
+    public static void doctorMenu(DoctorService doctorService) {
 
+        while (true) {
 
+            System.out.println("\n===== Doctor Management =====");
+            System.out.println("1. Add Doctor");
+            System.out.println("2. View Doctors");
+            System.out.println("3. Search Doctor by doctorId");
+            System.out.println("4. Search Doctor by specialization");
+            System.out.println("5. Delete Doctor");
+            System.out.println("6. Back");
+
+            System.out.print("Enter Choice: ");
+
+            int choice = scanner.nextInt();
+
+            switch (choice) {
+
+                case 1:
+                    doctorService.addDoctor();
+                    break;
+
+                case 2:
+                    doctorService.viewDoctors();
+                    break;
+
+                case 3:
+                    System.out.println("Enter doctor ID");
+                    int doctorId = scanner.nextInt();
+                    doctorService.searchDoctorById(doctorId);
+                    break;
+
+                case 4:
+                    System.out.println("Enter specialization");
+                    String specialization = scanner.nextLine();
+                    doctorService.searchDoctorBySpecialization(specialization);
+                    break;
+
+                case 5:
+                    doctorService.deleteDoctorById();
+                    break;
+
+                case 6:
+                    return;
+
+                default:
+                    System.out.println("Enter Valid Choice");
+            }
+        }
+    }
+
+    public static void appointmentMenu(
+            AppointmentService appointmentService) {
+
+        while (true) {
+
+            System.out.println("\n===== Appointment Management =====");
+            System.out.println("1. Book Appointment");
+            System.out.println("2. View Appointments");
+            System.out.println("3. Back");
+
+            System.out.print("Enter Choice: ");
+
+            int choice = scanner.nextInt();
+
+            switch (choice) {
+
+                case 1:
+                    appointmentService.bookAppointment();
+                    break;
+
+                case 2:
+                    appointmentService.viewAppointments();
+                    break;
+
+                case 3:
+                    return;
+
+                default:
+                    System.out.println("Enter Valid Choice");
+            }
+        }
     }
 }
